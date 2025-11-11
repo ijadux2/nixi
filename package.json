@@ -1,8 +1,8 @@
 {
   "name": "nixi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A hybrid programming language with Nix syntax, Bash functions, and React-like GUI",
-  "main": "src/index.js",
+  "main": "src/cli.js",
   "bin": {
     "nixi": "./src/cli.js"
   },
@@ -14,6 +14,11 @@
   "keywords": ["programming-language", "nix", "bash", "gui", "react"],
   "author": "Kumar Vaibhav",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ijadux2/nixi.git"
+  },
+  "homepage": "https://github.com/ijadux2/nixi",
   "dependencies": {},
   "devDependencies": {}
 }

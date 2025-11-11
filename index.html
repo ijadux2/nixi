@@ -12,26 +12,28 @@
         }
 
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #f093fb;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
-            --bg-white: #ffffff;
-            --border-color: #e2e8f0;
-            --code-bg: #1a202c;
+            --primary-color: #8b5cf6;
+            --secondary-color: #3b82f6;
+            --accent-color: #ec4899;
+            --text-dark: #f1f5f9;
+            --text-light: #94a3b8;
+            --bg-light: #1e293b;
+            --bg-white: #0f172a;
+            --border-color: #334155;
+            --code-bg: #0f172a;
             --code-text: #e2e8f0;
-            --success-color: #48bb78;
-            --warning-color: #ed8936;
-            --error-color: #f56565;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --card-bg: #1e293b;
+            --card-hover: #334155;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             min-height: 100vh;
         }
 
@@ -43,13 +45,13 @@
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         nav {
@@ -103,13 +105,14 @@
 
         /* Hero Section */
         .hero {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(30, 41, 59, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 4rem 2rem;
             margin: 3rem 0;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
         }
 
         .hero h1 {
