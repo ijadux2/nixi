@@ -1,0 +1,211 @@
+# Simple Todo App Configuration
+# A practical Nixi configuration for task management
+
+let
+  # Todo item component
+  TodoItem = { id, text, completed, onToggle, onDelete }:
+    div {
+      class: "todo-item";
+      children: [
+        input {
+          type: "checkbox";
+          checked: completed;
+          onChange: onToggle
+        };
+        span { 
+          class: if completed then "todo-text completed" else "todo-text";
+          text: text 
+        };
+        button {
+          class: "delete-btn";
+          text: "🗑️";
+          onClick: onDelete
+        }
+      ]
+    };
+
+  # Todo list component
+  TodoList = { todos, onToggle, onDelete }:
+    let
+      todoItems = map (todo: 
+        TodoItem {
+          id: todo.id;
+          text: todo.text;
+          completed: todo.completed;
+          onToggle: () => onToggle(todo.id);
+          onDelete: () => onDelete(todo.id)
+        }
+      ) todos;
+    in
+      div {
+        class: "todo-list";
+        children: todoItems
+      };
+
+  # Add todo form component
+  AddTodoForm = { onAdd }:
+    let
+      handleSubmit = () => {
+        let input = document.getElementById("new-todo");
+        if input.value != "" then {
+          onAdd(input.value);
+          input.value = ""
+        }
+      };
+    in
+      div {
+        class: "add-todo-form";
+        children: [
+          input {
+            id: "new-todo";
+            type: "text";
+            placeholder: "What needs to be done?";
+            class: "todo-input"
+          };
+          button {
+            class: "add-btn";
+            text: "Add";
+            onClick: handleSubmit
+          }
+        ]
+      };
+
+  # Main todo app component
+  TodoApp = {}:
+    let
+      # Initial state
+      todos = [
+        { id: 1; text: "Learn Nixi language"; completed: true };
+        { id: 2; text: "Build GUI applications"; completed: false };
+        { id: 3; text: "Create syntax highlighting"; completed: true }
+      ];
+      
+      # Event handlers
+      handleToggle = (id): {
+        echo "Toggled todo: " + id;
+        # In real app, this would update state
+      };
+      
+      handleDelete = (id): {
+        echo "Deleted todo: " + id;
+        # In real app, this would update state
+      };
+      
+      handleAdd = (text): {
+        echo "Added todo: " + text;
+        # In real app, this would update state
+      };
+    in
+      div {
+        class: "todo-app";
+        children: [
+          h1 { text: "Nixi Todo List" };
+          AddTodoForm { onAdd: handleAdd };
+          TodoList { 
+            todos: todos;
+            onToggle: handleToggle;
+            onDelete: handleDelete 
+          };
+          div {
+            class: "stats";
+            children: [
+              span { text: "Total: " + toString(length(todos)) };
+              span { 
+                text: "Completed: " + toString(length(filter (t: t.completed) todos))
+              }
+            ]
+          }
+        ]
+      };
+
+# Styling
+style "todo-app" {
+  max-width: "600px";
+  margin: "0 auto";
+  padding: "20px";
+  font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+}
+
+style "todo-item" {
+  display: "flex";
+  align-items: "center";
+  padding: "12px";
+  background: "white";
+  border: "1px solid #ddd";
+  border-radius: "8px";
+  margin-bottom: "8px";
+  gap: "12px";
+}
+
+style "todo-text" {
+  flex: "1";
+  font-size: "16px";
+  color: "#333";
+}
+
+style "todo-text.completed" {
+  text-decoration: "line-through";
+  color: "#999";
+}
+
+style "delete-btn" {
+  background: "#dc3545";
+  color: "white";
+  border: "none";
+  border-radius: "4px";
+  padding: "4px 8px";
+  cursor: "pointer";
+  font-size: "12px";
+}
+
+style "delete-btn:hover" {
+  background: "#c82333";
+}
+
+style "add-todo-form" {
+  display: "flex";
+  gap: "8px";
+  margin-bottom: "20px";
+}
+
+style "todo-input" {
+  flex: "1";
+  padding: "12px";
+  border: "2px solid #ddd";
+  border-radius: "8px";
+  font-size: "16px";
+}
+
+style "todo-input:focus" {
+  outline: "none";
+  border-color: "#007bff";
+}
+
+style "add-btn" {
+  background: "#007bff";
+  color: "white";
+  border: "none";
+  border-radius: "8px";
+  padding: "12px 20px";
+  font-size: "16px";
+  cursor: "pointer";
+}
+
+style "add-btn:hover" {
+  background: "#0056b3";
+}
+
+style "stats" {
+  display: "flex";
+  justify-content: "space-between";
+  margin-top: "20px";
+  padding: "16px";
+  background: "#f8f9fa";
+  border-radius: "8px";
+  font-weight: "600";
+}
+
+# Build and save todo app
+let todoApp = TodoApp {};
+in
+  saveHTML(todoApp, "todo.html", "Nixi Todo App")

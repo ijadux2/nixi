@@ -1,0 +1,153 @@
+# Simple Server Status
+# A working Nixi server configuration
+
+let
+  # Service status component
+  ServiceStatus = { name, status, port }:
+    div {
+      class: "service-card";
+      children: [
+        h3 { text: name };
+        div {
+          class: "service-details";
+          children: [
+            span { 
+              class: "status-badge " + status;
+              text: status 
+            };
+            span { class: "port"; text: "Port: " + port };
+            button {
+              class: "action-btn";
+              text: if status == "running" then "Stop" else "Start";
+              onClick: echo ("Toggle " + name + " service")
+            }
+          ]
+        }
+      ]
+    };
+
+  # Server dashboard
+  ServerDashboard = {}:
+    let
+      services = [
+        { name: "Web Server"; status: "running"; port: "8080" };
+        { name: "Database"; status: "running"; port: "5432" };
+        { name: "Cache"; status: "stopped"; port: "6379" };
+        { name: "API Gateway"; status: "running"; port: "3000" }
+      ];
+      
+      serviceCards = map (service: ServiceStatus service) services;
+    in
+      div {
+        class: "server-dashboard";
+        children: [
+          h1 { text: "Server Status" };
+          div { class: "services-grid"; children: serviceCards };
+          div {
+            class: "actions";
+            children: [
+              button {
+                class: "primary-btn";
+                text: "🔄 Restart All";
+                onClick: echo "Restarting all services..."
+              };
+              button {
+                class: "secondary-btn";
+                text: "💾 Save Config";
+                onClick: echo "Saving configuration..."
+              }
+            ]
+          }
+        ]
+      };
+
+# Server styling
+style "server-dashboard" {
+  max-width: "1200px";
+  margin: "0 auto";
+  padding: "20px";
+  font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+  background: "#f5f7fa";
+}
+
+style "services-grid" {
+  display: "grid";
+  grid-template-columns: "repeat(auto-fit, minmax(300px, 1fr))";
+  gap: "20px";
+  margin: "20px 0";
+}
+
+style "service-card" {
+  background: "white";
+  border-radius: "12px";
+  padding: "20px";
+  box-shadow: "0 2px 8px rgba(0, 0, 0, 0.1)";
+  border-left: "4px solid #007bff";
+}
+
+style "service-details" {
+  display: "flex";
+  flex-direction: "column";
+  gap: "12px";
+  margin-top: "12px";
+}
+
+style "status-badge" {
+  padding: "4px 12px";
+  border-radius: "20px";
+  font-size: "12px";
+  font-weight: "600";
+  text-transform: "uppercase";
+}
+
+style "status-badge.running" {
+  background: "#d1fae5";
+  color: "#065f46";
+}
+
+style "status-badge.stopped" {
+  background: "#fee2e2";
+  color: "#991b1b";
+}
+
+style "port" {
+  font-family: "'Courier New', monospace";
+  color: "#6b7280";
+}
+
+style "action-btn" {
+  padding: "8px 16px";
+  border: "none";
+  border-radius: "6px";
+  font-size: "12px";
+  cursor: "pointer";
+  background: "#f3f4f6";
+  color: "#374151";
+}
+
+style "actions" {
+  display: "flex";
+  gap: "12px";
+  justify-content: "center";
+  padding: "24px";
+  background: "white";
+  border-radius: "12px";
+  box-shadow: "0 2px 8px rgba(0, 0, 0, 0.1)";
+}
+
+style "primary-btn" {
+  background: "#3b82f6";
+  color: "white";
+  padding: "12px 24px";
+}
+
+style "secondary-btn" {
+  background: "#6b7280";
+  color: "white";
+  padding: "12px 24px";
+}
+
+# Build and save server dashboard
+let serverConfig = ServerDashboard {};
+in
+  saveHTML(serverConfig, "server.html", "Server Status")

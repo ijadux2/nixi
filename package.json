@@ -1,0 +1,19 @@
+{
+  "name": "nixi",
+  "version": "0.1.0",
+  "description": "A hybrid programming language with Nix syntax, Bash functions, and React-like GUI",
+  "main": "src/index.js",
+  "bin": {
+    "nixi": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node tests/test.js",
+    "dev": "node --watch src/cli.js"
+  },
+  "keywords": ["programming-language", "nix", "bash", "gui", "react"],
+  "author": "Kumar Vaibhav",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

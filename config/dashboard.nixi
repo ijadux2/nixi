@@ -1,0 +1,211 @@
+# Simple Dashboard Example
+# Practical demonstration of Nixi for building UI components
+
+# Styling for the dashboard
+style "dashboard" {
+  max-width: "1200px";
+  margin: "0 auto";
+  padding: "20px";
+  font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+}
+
+style "dashboard-header" {
+  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+  color: "white";
+  padding: "30px";
+  border-radius: "12px";
+  margin-bottom: "30px";
+  text-align: "center";
+}
+
+style "stats-grid" {
+  display: "flex";
+  flex-wrap: "wrap";
+  gap: "20px";
+  margin-bottom: "30px";
+}
+
+style "stat-card" {
+  background: "white";
+  padding: "25px";
+  border-radius: "12px";
+  box-shadow: "0 4px 15px rgba(0, 0, 0, 0.1)";
+  text-align: "center";
+  transition: "transform 0.2s ease";
+  flex: "1";
+  min-width: "250px";
+}
+
+style "stat-card" {
+  background: "white";
+  padding: "25px";
+  border-radius: "12px";
+  box-shadow: "0 4px 15px rgba(0, 0, 0, 0.1)";
+  text-align: "center";
+  transition: "transform 0.2s ease";
+}
+
+style "stat-card:hover" {
+  transform: "translateY(-5px)";
+}
+
+style "stat-number" {
+  font-size: "2.5em";
+  font-weight: "bold";
+  color: "#667eea";
+  margin-bottom: "10px";
+}
+
+style "stat-label" {
+  color: "#666";
+  font-size: "1.1em";
+  font-weight: "500";
+}
+
+style "actions-section" {
+  background: "white";
+  padding: "30px";
+  border-radius: "12px";
+  box-shadow: "0 4px 15px rgba(0, 0, 0, 0.1)";
+}
+
+style "action-buttons" {
+  display: "flex";
+  gap: "15px";
+  justify-content: "center";
+  flex-wrap: "wrap";
+}
+
+style "btn-primary" {
+  background: "#667eea";
+  color: "white";
+  border: "none";
+  padding: "12px 24px";
+  border-radius: "8px";
+  font-size: "16px";
+  font-weight: "600";
+  cursor: "pointer";
+  transition: "all 0.2s ease";
+}
+
+style "btn-secondary" {
+  background: "#f8f9fa";
+  color: "#333";
+  border: "1px solid #dee2e6";
+  padding: "12px 24px";
+  border-radius: "8px";
+  font-size: "16px";
+  font-weight: "600";
+  cursor: "pointer";
+  transition: "all 0.2s ease";
+}
+
+style "btn-primary:hover" {
+  background: "#5a6fd8";
+  transform: "translateY(-2px)";
+}
+
+style "btn-secondary:hover" {
+  background: "#e9ecef";
+  transform: "translateY(-2px)";
+}
+
+# Dashboard application
+let
+  # Dashboard data
+  appName = "Nixi Dashboard";
+  version = "v1.0.0";
+  
+  # Stat card data
+  usersStat = div {
+    class: "stat-card";
+    children: [
+      div { class: "stat-number"; text: "1,234" };
+      div { class: "stat-label"; text: "Total Users" }
+    ]
+  };
+  
+  sessionsStat = div {
+    class: "stat-card";
+    children: [
+      div { class: "stat-number"; text: "456" };
+      div { class: "stat-label"; text: "Active Sessions" }
+    ]
+  };
+  
+  signupsStat = div {
+    class: "stat-card";
+    children: [
+      div { class: "stat-number"; text: "89" };
+      div { class: "stat-label"; text: "New Signups" }
+    ]
+  };
+  
+  apiStat = div {
+    class: "stat-card";
+    children: [
+      div { class: "stat-number"; text: "12.5K" };
+      div { class: "stat-label"; text: "API Calls" }
+    ]
+  };
+  
+  # Dashboard header
+  Header = div {
+    class: "dashboard-header";
+    children: [
+      h1 { text: appName };
+      p { text: "Functional Programming Dashboard " + version }
+    ]
+  };
+  
+  # Statistics section
+  StatsSection = div {
+    class: "stats-grid";
+    children: [
+      usersStat;
+      sessionsStat;
+      signupsStat;
+      apiStat
+    ]
+  };
+  
+  # Actions section
+  ActionsSection = div {
+    class: "actions-section";
+    children: [
+      h2 { text: "Quick Actions" };
+      div {
+        class: "action-buttons";
+        children: [
+          button {
+            class: "btn-primary";
+            text: "Refresh Data";
+            onClick: echo "Refreshing dashboard data..."
+          };
+          button {
+            class: "btn-secondary";
+            text: "Export Report";
+            onClick: echo "Exporting dashboard report..."
+          };
+          button {
+            class: "btn-secondary";
+            text: "Settings";
+            onClick: echo "Opening dashboard settings..."
+          }
+        ]
+      }
+    ]
+  };
+  
+  # Complete dashboard
+  Dashboard = div {
+    class: "dashboard";
+    children: [
+      Header;
+      StatsSection;
+      ActionsSection
+    ]
+  };
+
+in
+  saveHTML(Dashboard, "dashboard.html", "Nixi Dashboard")

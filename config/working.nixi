@@ -1,0 +1,16 @@
+# Simple Working Nixi Configuration
+
+let
+  # Basic math operations
+  result = 42 + 8;
+  
+  # String operations
+  message = "Nixi result: " + result;
+  
+  # Simple component
+  app = div { 
+    class: "app"; 
+    text: message 
+  };
+in
+  saveHTML(app, "working.html", "Working Nixi App")

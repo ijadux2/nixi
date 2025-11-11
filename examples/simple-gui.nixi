@@ -1,0 +1,9 @@
+# Simple GUI test
+
+let
+  app = div { 
+    class: "container"; 
+    text: "Hello World" 
+  };
+in
+  saveHTML(app, "simple.html", "Simple App")

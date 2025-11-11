@@ -1,0 +1,9 @@
+# Simple Working Nixi Example
+
+let
+  app = div { 
+    class: "container"; 
+    text: "Hello Nixi World!" 
+  };
+in
+  saveHTML(app, "simple-demo.html", "Simple Nixi Demo")

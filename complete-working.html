@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Working Demo</title>
+    <style>
+        
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      .button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+      }
+      
+      .button:hover {
+        background-color: #0056b3;
+      }
+      
+      .input {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        width: 100%;
+      }
+      
+      .input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+      }
+      
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    
+        app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="app"><div class="header"><h1 text="Nixi Language Demo">Nixi Language Demo</h1><p text="Functional Programming + GUI Components">Functional Programming + GUI Components</p></div><div class="content"><h3 text="Features">Features</h3><p text="Let expressions for bindings">Let expressions for bindings</p><p text="HTML-like GUI components">HTML-like GUI components</p><p text="CSS styling support">CSS styling support</p><p text="Built-in functions">Built-in functions</p><button class="btn" text="Click Me">Click Me</button></div></div>
+    <script>
+        
+      function handleClick(elementId) {
+        console.log('Clicked element:', elementId);
+        // In a real implementation, this would trigger the Nixi event handler
+      }
+      
+      // Simple state management
+      let appState = {};
+      
+      function updateState(key, value) {
+        appState[key] = value;
+        console.log('State updated:', appState);
+      }
+    
+    </script>
+</body>
+</html>

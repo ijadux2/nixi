@@ -1,0 +1,81 @@
+# Simple Todo App
+# A working Nixi todo application
+
+let
+  # Todo item component
+  TodoItem = { text, completed }:
+    div {
+      class: "todo-item";
+      children: [
+        span { 
+          class: if completed then "todo-text completed" else "todo-text";
+          text: text 
+        }
+      ]
+    };
+
+  # Todo list component
+  TodoList = {}:
+    let
+      todos = [
+        { text: "Learn Nixi language"; completed: true };
+        { text: "Build GUI applications"; completed: false };
+        { text: "Create syntax highlighting"; completed: true }
+      ];
+      
+      todoItems = map (todo: TodoItem todo) todos;
+    in
+      div {
+        class: "todo-list";
+        children: [
+          h1 { text: "Nixi Todo List" };
+          div { class: "items"; children: todoItems };
+          div {
+            class: "stats";
+            text: "Total: " + toString(length(todos)) + " | Completed: " + toString(length(filter (t: t.completed) todos))
+          }
+        ]
+      };
+
+# Styling
+style "todo-list" {
+  max-width: "600px";
+  margin: "0 auto";
+  padding: "20px";
+  font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+}
+
+style "todo-item" {
+  display: "flex";
+  align-items: "center";
+  padding: "12px";
+  background: "white";
+  border: "1px solid #ddd";
+  border-radius: "8px";
+  margin-bottom: "8px";
+}
+
+style "todo-text" {
+  flex: "1";
+  font-size: "16px";
+  color: "#333";
+}
+
+style "todo-text.completed" {
+  text-decoration: "line-through";
+  color: "#999";
+}
+
+style "stats" {
+  margin-top: "20px";
+  padding: "16px";
+  background: "#f8f9fa";
+  border-radius: "8px";
+  font-weight: "600";
+  text-align: "center";
+}
+
+# Build and save todo app
+let todoApp = TodoList {};
+in
+  saveHTML(todoApp, "todo.html", "Nixi Todo App")

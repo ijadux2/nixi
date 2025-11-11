@@ -1,0 +1,17 @@
+# Simple working example with math
+
+let
+  x = 42;
+  y = 23;
+  sum = add(x, y);
+  message = "The sum is: " + sum;
+  
+  app = div {
+    class: "container";
+    children: [
+      h1 { text: "Math Demo" };
+      p { text: message }
+    ]
+  };
+in
+  saveHTML(app, "math-demo.html", "Math Demo")

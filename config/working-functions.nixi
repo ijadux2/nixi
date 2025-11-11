@@ -1,0 +1,45 @@
+# Working Function Example
+# Demonstrates function definitions without parameter destructuring issues
+
+let
+  # Simple function with no parameters
+  greet = () => "Hello from Nixi!";
+  
+  # Function with positional parameters
+  add = a b => a + b;
+  
+  # Component with simple parameters
+  SimpleCard = title =>
+    div {
+      class: "card";
+      text: title
+    };
+  
+  # Main application
+  App = div {
+    class: "app";
+    children: [
+      h1 { text: "Working Functions" };
+      SimpleCard "Hello World";
+      SimpleCard "Another Card";
+      p { text: add(5, 3) }
+    ]
+  };
+
+# Add some basic styling
+style "app" {
+  padding: "20px";
+  font-family: "Arial, sans-serif";
+}
+
+style "card" {
+  background: "white";
+  border: "1px solid #ddd";
+  padding: "15px";
+  margin: "10px 0";
+  border-radius: "8px";
+  box-shadow: "0 2px 4px rgba(0,0,0,0.1)";
+}
+
+in
+  saveHTML(App, "working-functions.html", "Working Functions Demo")

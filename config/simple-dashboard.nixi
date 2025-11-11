@@ -1,0 +1,160 @@
+# Simple Personal Dashboard
+# A working Nixi configuration
+
+let
+  # System info component
+  SystemInfo = {}:
+    div {
+      class: "system-info";
+      children: [
+        h2 { text: "System Information" };
+        div { 
+          class: "info-grid";
+          children: [
+            div { 
+              class: "info-item";
+              children: [
+                span { class: "label"; text: "Hostname:" };
+                span { class: "value"; text: "fedora" }
+              ]
+            };
+            div { 
+              class: "info-item";
+              children: [
+                span { class: "label"; text: "User:" };
+                span { class: "value"; text: "jadu" }
+              ]
+            };
+            div { 
+              class: "info-item";
+              children: [
+                span { class: "label"; text: "Date:" };
+                span { class: "value"; text: "2024-11-11" }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+  # Quick actions component
+  QuickActions = {}:
+    div {
+      class: "quick-actions";
+      children: [
+        h3 { text: "Quick Actions" };
+        div { 
+          class: "action-buttons";
+          children: [
+            button { 
+              class: "action-btn refresh";
+              text: "🔄 Refresh";
+              onClick: echo "Refreshing dashboard..."
+            };
+            button { 
+              class: "action-btn terminal";
+              text: "💻 Terminal";
+              onClick: echo "Opening terminal..."
+            }
+          ]
+        }
+      ]
+    };
+
+  # Main dashboard
+  Dashboard = {}:
+    div {
+      class: "dashboard";
+      children: [
+        SystemInfo {};
+        QuickActions {}
+      ]
+    };
+
+# Styling
+style "dashboard" {
+  display: "grid";
+  gap: "20px";
+  padding: "20px";
+  max-width: "1200px";
+  margin: "0 auto";
+  font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+}
+
+style "system-info" {
+  background: "white";
+  border-radius: "12px";
+  padding: "24px";
+  box-shadow: "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
+
+style "info-grid" {
+  display: "grid";
+  grid-template-columns: "repeat(auto-fit, minmax(250px, 1fr))";
+  gap: "16px";
+  margin-top: "16px";
+}
+
+style "info-item" {
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
+  padding: "12px";
+  background: "#f8f9fa";
+  border-radius: "8px";
+  border: "1px solid #e9ecef";
+}
+
+style "label" {
+  font-weight: "600";
+  color: "#495057";
+}
+
+style "value" {
+  font-family: "'Courier New', monospace";
+  color: "#007bff";
+  font-weight: "500";
+}
+
+style "quick-actions" {
+  background: "white";
+  border-radius: "12px";
+  padding: "24px";
+  box-shadow: "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
+
+style "action-buttons" {
+  display: "grid";
+  grid-template-columns: "repeat(auto-fit, minmax(150px, 1fr))";
+  gap: "12px";
+  margin-top: "16px";
+}
+
+style "action-btn" {
+  padding: "12px 16px";
+  border: "none";
+  border-radius: "8px";
+  font-size: "14px";
+  font-weight: "500";
+  cursor: "pointer";
+  transition: "all 0.2s";
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  gap: "8px";
+}
+
+style "refresh" {
+  background: "#28a745";
+  color: "white";
+}
+
+style "terminal" {
+  background: "#6c757d";
+  color: "white";
+}
+
+# Build and save dashboard
+let dashboard = Dashboard {};
+in
+  saveHTML(dashboard, "dashboard.html", "Personal Dashboard")

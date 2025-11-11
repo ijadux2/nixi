@@ -1,0 +1,8 @@
+# Ultra Simple Working Example
+let
+  app = div { 
+    class: "container"; 
+    text: "Hello Nixi!" 
+  };
+in
+  saveHTML(app, "simple.html", "Simple App")
