@@ -167,7 +167,7 @@ MIT License - see LICENSE file for details
 ## 🔗 Links
 
 - **GitHub Repository**: https://github.com/ijadux2/nixi
-- **Documentation**: [index.html](./index.html)
+- **Documentation**: [nixi](https://nixi-phi.vercel.app/)
 - **Issues**: Report bugs and feature requests on GitHub
 
 ---
