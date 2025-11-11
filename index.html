@@ -490,9 +490,10 @@
             <div class="logo">🚀 Nixi</div>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
+                <li><a href="#language-reference">Language Reference</a></li>
                 <li><a href="#examples">Examples</a></li>
-                <li><a href="#installation">Installation</a></li>
                 <li><a href="#documentation">Documentation</a></li>
+                <li><a href="#installation">Installation</a></li>
             </ul>
         </nav>
     </header>
@@ -543,6 +544,441 @@
                     <div class="feature-icon">🛠️</div>
                     <h3>Editor Support</h3>
                     <p>Built-in syntax highlighting, indentation, and file detection for Neovim and other editors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="language-reference" class="code-section">
+            <h2>📖 Language Reference</h2>
+            
+            <div class="code-examples">
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Basic Syntax & Data Types</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Comments start with #</span>
+<span class="comment"># Basic data types</span>
+<span class="keyword">let</span>
+  <span class="comment"># Strings</span>
+  name = <span class="string">"Nixi"</span>;
+  greeting = <span class="string">'Hello World'</span>;
+  
+  <span class="comment"># Numbers</span>
+  integer = <span class="number">42</span>;
+  float = <span class="number">3.14</span>;
+  
+  <span class="comment"># Booleans</span>
+  isTrue = <span class="keyword">true</span>;
+  isFalse = <span class="keyword">false</span>;
+  
+  <span class="comment"># Lists (arrays)</span>
+  numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+  names = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>];
+  
+  <span class="comment"># Objects/Records</span>
+  person = {
+    <span class="property">name</span>: <span class="string">"Alice"</span>;
+    <span class="property">age</span>: <span class="number">30</span>;
+    <span class="property">city</span>: <span class="string">"New York"</span>
+  };
+<span class="keyword">in</span>
+  <span class="function">echo</span> <span class="string">"Basic types defined!"</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Functions & Lambda Expressions</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Function definitions</span>
+<span class="keyword">let</span>
+  <span class="comment"># Simple function (curried form)</span>
+  add = x: y: x <span class="operator">+</span> y;
+  
+  <span class="comment"># Function with record parameters</span>
+  greet = { name, age }:
+    <span class="string">"Hello "</span> <span class="operator">+</span> name <span class="operator">+</span> <span class="string">", you are "</span> <span class="operator">+</span> <span class="function">toString</span>(age) <span class="operator">+</span> <span class="string">" years old"</span>;
+  
+  <span class="comment"># Function application</span>
+  result1 = add <span class="number">5</span> <span class="number">3</span>;  <span class="comment"># Returns 8</span>
+  result2 = greet { <span class="property">name</span> = <span class="string">"Alice"</span>; <span class="property">age</span> = <span class="number">30</span> };
+  
+  <span class="comment"># Higher-order function</span>
+  map = f: list:
+    <span class="keyword">if</span> <span class="function">length</span>(list) <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> []
+    <span class="keyword">else</span> [f (<span class="function">head</span>(list))] <span class="operator">++</span> map f (<span class="function">tail</span>(list));
+  
+  doubled = map (x: x <span class="operator">*</span> <span class="number">2</span>) [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];  <span class="comment"># [2, 4, 6]</span>
+<span class="keyword">in</span>
+  result2</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Built-in Functions</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># System operations (Bash-like)</span>
+<span class="keyword">let</span>
+  <span class="comment"># File operations</span>
+  files = <span class="function">ls</span>(<span class="string">"."</span>);           <span class="comment"># List files in current directory</span>
+  currentDir = <span class="function">pwd</span>();        <span class="comment"># Get current working directory</span>
+  <span class="function">cd</span>(<span class="string">"/tmp"</span>);              <span class="comment"># Change directory</span>
+  
+  <span class="comment"># Output functions</span>
+  <span class="function">echo</span> <span class="string">"Hello World"</span>;     <span class="comment"># Print to console</span>
+  <span class="function">print</span> <span class="string">"Debug info"</span>;     <span class="comment"># Alternative print function</span>
+  
+  <span class="comment"># String operations</span>
+  message = <span class="string">"Hello"</span> <span class="operator">+</span> <span class="string">" "</span> <span class="operator">+</span> <span class="string">"World"</span>;  <span class="comment"># String concatenation</span>
+  upper = <span class="function">toUpperCase</span>(message);       <span class="comment"># Convert to uppercase</span>
+  lower = <span class="function">toLowerCase</span>(message);       <span class="comment"># Convert to lowercase</span>
+  
+  <span class="comment"># Mathematical operations</span>
+  sum = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>);           <span class="comment"># Addition</span>
+  product = <span class="function">multiply</span>(<span class="number">4</span>, <span class="number">6</span>);    <span class="comment"># Multiplication</span>
+  sqrt_val = <span class="function">sqrt</span>(<span class="number">16</span>);        <span class="comment"># Square root</span>
+  
+  <span class="comment"># List operations</span>
+  first = <span class="function">head</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);     <span class="comment"># First element: 1</span>
+  rest = <span class="function">tail</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);     <span class="comment"># All but first: [2, 3]</span>
+  len = <span class="function">length</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);  <span class="comment"># Length: 3</span>
+<span class="keyword">in</span>
+  <span class="function">echo</span> <span class="string">"Built-in functions demo completed"</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">GUI Components</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># HTML-like GUI components</span>
+<span class="keyword">let</span>
+  <span class="comment"># Basic elements</span>
+  Title = <span class="component">h1</span> { 
+    <span class="property">text</span>: <span class="string">"Welcome to Nixi"</span>;
+    <span class="property">class</span>: <span class="string">"title"</span>
+  };
+  
+  Paragraph = <span class="component">p</span> {
+    <span class="property">text</span>: <span class="string">"This is a paragraph of text."</span>;
+    <span class="property">class</span>: <span class="string">"content"</span>
+  };
+  
+  <span class="comment"># Container with children</span>
+  Container = <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"container"</span>;
+    <span class="property">children</span>: [
+      Title;
+      Paragraph;
+      <span class="component">span</span> { <span class="property">text</span>: <span class="string">"Inline text"</span> }
+    ]
+  };
+  
+  <span class="comment"># Interactive elements</span>
+  Button = <span class="component">button</span> {
+    <span class="property">text</span>: <span class="string">"Click Me!"</span>;
+    <span class="property">class</span>: <span class="string">"btn"</span>;
+    <span class="property">onClick</span>: <span class="function">echo</span> <span class="string">"Button clicked!"</span>
+  };
+  
+  <span class="comment"># Form elements</span>
+  Input = <span class="component">input</span> {
+    <span class="property">type</span>: <span class="string">"text"</span>;
+    <span class="property">placeholder</span>: <span class="string">"Enter your name"</span>;
+    <span class="property">class</span>: <span class="string">"form-input"</span>
+  };
+  
+  <span class="comment"># Lists and tables</span>
+  List = <span class="component">ul</span> {
+    <span class="property">class</span>: <span class="string">"item-list"</span>;
+    <span class="property">children</span>: [
+      <span class="component">li</span> { <span class="property">text</span>: <span class="string">"Item 1"</span> };
+      <span class="component">li</span> { <span class="property">text</span>: <span class="string">"Item 2"</span> };
+      <span class="component">li</span> { <span class="property">text</span>: <span class="string">"Item 3"</span> }
+    ]
+  };
+<span class="keyword">in</span>
+  <span class="function">saveHTML</span>(Container, <span class="string">"gui-demo.html"</span>, <span class="string">"GUI Components Demo"</span>)</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">CSS Styling System</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Define styles using the style keyword</span>
+<span class="keyword">style</span> <span class="string">"container"</span> {
+  <span class="property">max-width</span>: <span class="string">"800px"</span>;
+  <span class="property">margin</span>: <span class="string">"0 auto"</span>;
+  <span class="property">padding</span>: <span class="string">"20px"</span>;
+  <span class="property">font-family</span>: <span class="string">"Arial, sans-serif"</span>;
+  <span class="property">background</span>: <span class="string">"linear-gradient(135deg, #667eea 0%, #764ba2 100%)"</span>;
+}
+
+<span class="keyword">style</span> <span class="string">"card"</span> {
+  <span class="property">background</span>: <span class="string">"white"</span>;
+  <span class="property">border-radius</span>: <span class="string">"10px"</span>;
+  <span class="property">padding</span>: <span class="string">"20px"</span>;
+  <span class="property">margin</span>: <span class="string">"10px 0"</span>;
+  <span class="property">box-shadow</span>: <span class="string">"0 4px 6px rgba(0, 0, 0, 0.1)"</span>;
+  <span class="property">transition</span>: <span class="string">"transform 0.3s ease"</span>;
+}
+
+<span class="comment"># Hover effects and pseudo-classes</span>
+<span class="keyword">style</span> <span class="string">"button"</span> {
+  <span class="property">background</span>: <span class="string">"#007bff"</span>;
+  <span class="property">color</span>: <span class="string">"white"</span>;
+  <span class="property">border</span>: <span class="string">"none"</span>;
+  <span class="property">padding</span>: <span class="string">"12px 24px"</span>;
+  <span class="property">border-radius</span>: <span class="string">"6px"</span>;
+  <span class="property">cursor</span>: <span class="string">"pointer"</span>;
+  <span class="property">font-weight</span>: <span class="string">"600"</span>;
+}
+
+<span class="comment"># Media queries for responsive design</span>
+<span class="keyword">style</span> <span class="string">"responsive-grid"</span> {
+  <span class="property">display</span>: <span class="string">"grid"</span>;
+  <span class="property">grid-template-columns</span>: <span class="string">"repeat(auto-fit, minmax(300px, 1fr))"</span>;
+  <span class="property">gap</span>: <span class="string">"20px"</span>;
+}
+
+<span class="comment"># Animation keyframes</span>
+<span class="keyword">style</span> <span class="string">"animated"</span> {
+  <span class="property">animation</span>: <span class="string">"fadeIn 0.5s ease-in"</span>;
+}
+
+<span class="comment"># Now use these styles in components</span>
+<span class="keyword">let</span>
+  App = <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"container"</span>;
+    <span class="property">children</span>: [
+      <span class="component">div</span> {
+        <span class="property">class</span>: <span class="string">"card animated"</span>;
+        <span class="property">children</span>: [
+          <span class="component">h2</span> { <span class="property">text</span>: <span class="string">"Styled Card"</span> };
+          <span class="component">button</span> {
+            <span class="property">class</span>: <span class="string">"button"</span>;
+            <span class="property">text</span>: <span class="string">"Styled Button"</span>;
+            <span class="property">onClick</span>: <span class="function">echo</span> <span class="string">"Styled button clicked!"</span>
+          }
+        ]
+      }
+    ]
+  };
+<span class="keyword">in</span>
+  <span class="function">saveHTML</span>(App, <span class="string">"styled-app.html"</span>, <span class="string">"CSS Styling Demo"</span>)</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Control Flow & Pattern Matching</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Conditional expressions</span>
+<span class="keyword">let</span>
+  <span class="comment"># If-then-else expressions</span>
+  absolute = x:
+    <span class="keyword">if</span> x <span class="operator">>=</span> <span class="number">0</span>
+    <span class="keyword">then</span> x
+    <span class="keyword">else</span> <span class="operator">-</span>x;
+  
+  <span class="comment"># Pattern matching on records</span>
+  describePerson = person:
+    <span class="keyword">if</span> person.age <span class="operator"><</span> <span class="number">18</span>
+    <span class="keyword">then</span> person.name <span class="operator">+</span> <span class="string">" is a minor"</span>
+    <span class="keyword">else if</span> person.age <span class="operator">>=</span> <span class="number">65</span>
+    <span class="keyword">then</span> person.name <span class="operator">+</span> <span class="string">" is a senior"</span>
+    <span class="keyword">else</span> person.name <span class="operator">+</span> <span class="string">" is an adult"</span>;
+  
+  <span class="comment"># List processing with recursion</span>
+  sumList = list:
+    <span class="keyword">if</span> <span class="function">length</span>(list) <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> <span class="number">0</span>
+    <span class="keyword">else</span> <span class="function">head</span>(list) <span class="operator">+</span> sumList(<span class="function">tail</span>(list));
+  
+  <span class="comment"># Filter function</span>
+  filter = predicate: list:
+    <span class="keyword">if</span> <span class="function">length</span>(list) <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> []
+    <span class="keyword">else if</span> predicate(<span class="function">head</span>(list))
+    <span class="keyword">then</span> [<span class="function">head</span>(list)] <span class="operator">++</span> filter predicate (<span class="function">tail</span>(list))
+    <span class="keyword">else</span> filter predicate (<span class="function">tail</span>(list));
+  
+  <span class="comment"># Usage examples</span>
+  abs5 = absolute <span class="operator">-</span><span class="number">5</span>;  <span class="comment"># Returns 5</span>
+  description = describePerson { <span class="property">name</span> = <span class="string">"Alice"</span>; <span class="property">age</span> = <span class="number">25</span> };
+  sum = sumList([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);  <span class="comment"># Returns 15</span>
+  evens = filter (x: x <span class="operator">%</span> <span class="number">2</span> <span class="operator">==</span> <span class="number">0</span>) [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];  <span class="comment"># [2, 4, 6]</span>
+<span class="keyword">in</span>
+  description</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Component Composition & Reusability</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Reusable component definitions</span>
+<span class="keyword">let</span>
+  <span class="comment"># Generic card component</span>
+  Card = { title, content, class }: <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"card "</span> <span class="operator">+</span> class;
+    <span class="property">children</span>: [
+      <span class="component">h3</span> { <span class="property">text</span>: title };
+      <span class="component">p</span> { <span class="property">text</span>: content }
+    ]
+  };
+  
+  <span class="comment"># Button component with variants</span>
+  Button = { text, variant, onClick }: <span class="component">button</span> {
+    <span class="property">class</span>: <span class="string">"btn btn-"</span> <span class="operator">+</span> variant;
+    <span class="property">text</span>: text;
+    <span class="property">onClick</span>: onClick
+  };
+  
+  <span class="comment"># List component for rendering arrays</span>
+  List = { items, renderItem }: <span class="component">ul</span> {
+    <span class="property">class</span>: <span class="string">"list"</span>;
+    <span class="property">children</span>: <span class="function">map</span>(renderItem, items)
+  };
+  
+  <span class="comment"># User profile component</span>
+  UserProfile = { user }: <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"user-profile"</span>;
+    <span class="property">children</span>: [
+      <span class="component">img</span> { 
+        <span class="property">src</span>: user.avatar;
+        <span class="property">alt</span>: <span class="string">"Avatar of "</span> <span class="operator">+</span> user.name;
+        <span class="property">class</span>: <span class="string">"avatar"</span>
+      };
+      <span class="component">div</span> {
+        <span class="property">class</span>: <span class="string">"user-info"</span>;
+        <span class="property">children</span>: [
+          <span class="component">h4</span> { <span class="property">text</span>: user.name };
+          <span class="component">p</span> { <span class="property">text</span>: user.email };
+          <span class="component">span</span> { <span class="property">text</span>: <span class="string">"Role: "</span> <span class="operator">+</span> user.role }
+        ]
+      }
+    ]
+  };
+  
+  <span class="comment"># Data for our components</span>
+  users = [
+    { <span class="property">name</span> = <span class="string">"Alice"</span>; <span class="property">email</span> = <span class="string">"alice@example.com"</span>; <span class="property">role</span> = <span class="string">"Developer"</span>; <span class="property">avatar</span> = <span class="string">"alice.jpg"</span> };
+    { <span class="property">name</span> = <span class="string">"Bob"</span>; <span class="property">email</span> = <span class="string">"bob@example.com"</span>; <span class="property">role</span> = <span class="string">"Designer"</span>; <span class="property">avatar</span> = <span class="string">"bob.jpg"</span> }
+  ];
+  
+  <span class="comment"># Main application using composed components</span>
+  App = <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"app"</span>;
+    <span class="property">children</span>: [
+      Card {
+        <span class="property">title</span>: <span class="string">"User Management"</span>;
+        <span class="property">content</span>: <span class="string">"Manage your application users"</span>;
+        <span class="property">class</span>: <span class="string">"header-card"</span>
+      };
+      List {
+        <span class="property">items</span>: users;
+        <span class="property">renderItem</span>: UserProfile
+      };
+      Button {
+        <span class="property">text</span>: <span class="string">"Add User"</span>;
+        <span class="property">variant</span>: <span class="string">"primary"</span>;
+        <span class="property">onClick</span>: <span class="function">echo</span> <span class="string">"Add user clicked"</span>
+      }
+    ]
+  };
+<span class="keyword">in</span>
+  <span class="function">saveHTML</span>(App, <span class="string">"components.html"</span>, <span class="string">"Component Composition Demo"</span>)</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Error Handling & Debugging</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Error handling patterns</span>
+<span class="keyword">let</span>
+  <span class="comment"># Safe division with error handling</span>
+  safeDivide = numerator: denominator:
+    <span class="keyword">if</span> denominator <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> {
+      <span class="property">success</span>: <span class="keyword">false</span>;
+      <span class="property">error</span>: <span class="string">"Division by zero"</span>;
+      <span class="property">value</span>: <span class="keyword">null</span>
+    }
+    <span class="keyword">else</span> {
+      <span class="property">success</span>: <span class="keyword">true</span>;
+      <span class="property">error</span>: <span class="keyword">null</span>;
+      <span class="property">value</span>: numerator <span class="operator">/</span> denominator
+    };
+  
+  <span class="comment"># Safe list access</span>
+  safeHead = list:
+    <span class="keyword">if</span> <span class="function">length</span>(list) <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> <span class="keyword">null</span>
+    <span class="keyword">else</span> <span class="function">head</span>(list);
+  
+  <span class="comment"># Debug logging function</span>
+  debug = message: value:
+    <span class="keyword">let</span>
+      _ = <span class="function">echo</span> (<span class="string">"[DEBUG] "</span> <span class="operator">+</span> message <span class="operator">+</span> <span class="string">": "</span> <span class="operator">+</span> <span class="function">toString</span>(value));
+    <span class="keyword">in</span> value;
+  
+  <span class="comment"># Validation functions</span>
+  validateEmail = email:
+    <span class="keyword">let</span>
+      hasAt = <span class="function">indexOf</span>(email, <span class="string">"@"</span>) <span class="operator">></span> <span class="operator">-</span><span class="number">1</span>;
+      hasDot = <span class="function">indexOf</span>(email, <span class="string">"."</span>) <span class="operator">></span> <span class="function">indexOf</span>(email, <span class="string">"@"</span>);
+    <span class="keyword">in</span> hasAt <span class="operator">&&</span> hasDot;
+  
+  <span class="comment"># Result type for error handling</span>
+  Result = { success, value, error };
+  
+  <span class="comment"># Safe file operations</span>
+  safeReadFile = filename:
+    <span class="keyword">let</span>
+      fileExists = <span class="function">fileExists</span>(filename);
+    <span class="keyword">in</span>
+      <span class="keyword">if</span> fileExists
+      <span class="keyword">then</span> Result {
+        <span class="property">success</span>: <span class="keyword">true</span>;
+        <span class="property">value</span>: <span class="function">readFile</span>(filename);
+        <span class="property">error</span>: <span class="keyword">null</span>
+      }
+      <span class="keyword">else</span> Result {
+        <span class="property">success</span>: <span class="keyword">false</span>;
+        <span class="property">value</span>: <span class="keyword">null</span>;
+        <span class="property">error</span>: <span class="string">"File not found: "</span> <span class="operator">+</span> filename
+      };
+  
+  <span class="comment"># Usage examples</span>
+  result1 = safeDivide <span class="number">10</span> <span class="number">2</span>;  <span class="comment"># Success case</span>
+  result2 = safeDivide <span class="number">10</span> <span class="number">0</span>;  <span class="comment"># Error case</span>
+  
+  debugResult = debug <span class="string">"Division result"</span> result1;
+  emailValid = validateEmail <span class="string">"user@example.com"</span>;
+<span class="keyword">in</span>
+  <span class="function">echo</span> <span class="string">"Error handling demo completed"</span></pre>
+                    </div>
                 </div>
             </div>
         </section>
