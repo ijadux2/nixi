@@ -1110,6 +1110,377 @@
             </div>
         </section>
 
+        <section id="documentation" class="code-section">
+            <h2>📚 Documentation</h2>
+
+            <div class="code-examples">
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Introduction to Nixi</div>
+                    </div>
+                    <div class="code-content">
+                        <p><strong>Nixi</strong> is a hybrid programming language designed to bridge the gap between functional programming, system scripting, and modern web development. Inspired by Nix's pure functional approach, Bash's practical built-in utilities, and React.js's component-based UI paradigm, Nixi offers a unique blend of declarative syntax, imperative operations, and declarative styling.</p>
+
+                        <h3>Design Philosophy</h3>
+                        <ul>
+                            <li><strong>Functional Core:</strong> Everything is an expression, with immutable data and pure functions as the foundation. No side effects in core logic—changes are explicit and predictable.</li>
+                            <li><strong>Practical Imperative Layer:</strong> Built-in functions for system interactions (file I/O, directory operations) allow seamless scripting without sacrificing purity.</li>
+                            <li><strong>Declarative UI:</strong> GUI components are defined declaratively, with CSS styling integrated directly into the language for a cohesive development experience.</li>
+                            <li><strong>Compilation to Web:</strong> Nixi programs compile to standalone HTML files, making them portable and runnable in any browser.</li>
+                        </ul>
+
+                        <h3>Key Principles</h3>
+                        <ul>
+                            <li><strong>Immutability:</strong> Data structures are immutable by default, promoting safer, more predictable code.</li>
+                            <li><strong>Composition over Inheritance:</strong> Functions and components are composed rather than extended, leading to modular, reusable code.</li>
+                            <li><strong>Zero Dependencies:</strong> Compiled output is pure HTML/CSS/JS, requiring no runtime dependencies.</li>
+                            <li><strong>Developer Experience:</strong> Syntax highlighting, error messages, and editor support make development intuitive.</li>
+                        </ul>
+
+                        <h3>Execution Model</h3>
+                        <p>Nixi code is interpreted and compiled in two phases:</p>
+                        <ol>
+                            <li><strong>Interpretation:</strong> The AST is evaluated, executing functions and building component trees.</li>
+                            <li><strong>Compilation:</strong> The result is rendered to HTML with embedded CSS and JavaScript for interactivity.</li>
+                        </ol>
+                        <p>To execute Nixi code:</p>
+                        <ol>
+                            <li>Ensure Node.js is installed.</li>
+                            <li>Clone the Nixi repository: <code>git clone https://github.com/ijadux2/nixi.git && cd nixi</code></li>
+                            <li>Install dependencies: <code>npm install</code></li>
+                            <li>Run a .nixi file: <code>node src/cli.js path/to/your/file.nixi</code></li>
+                            <li>The output will be an HTML file (e.g., if your code uses <code>saveHTML</code>, it generates the specified file).</li>
+                        </ol>
+                        <p>Example: <code>node src/cli.js examples/simple-gui.nixi</code> will generate <code>simple-gui.html</code>, which you can open in a browser.</p>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Core Syntax</div>
+                    </div>
+                    <div class="code-content">
+                        <p>Nixi's syntax is inspired by Nix, using <code>let</code> expressions for bindings and <code>in</code> to define the scope.</p>
+
+                        <h3>Let-In Expressions</h3>
+                        <p>Bindings are defined in a <code>let</code> block and used in the <code>in</code> expression:</p>
+                        <pre><span class="keyword">let</span>
+  x = <span class="number">5</span>;
+  y = x <span class="operator">+</span> <span class="number">3</span>;
+<span class="keyword">in</span>
+  y  <span class="comment"># Returns 8</span></pre>
+
+                        <h3>Data Types</h3>
+                        <ul>
+                            <li><strong>Strings:</strong> Double or single quotes: <code>"hello"</code> or <code>'world'</code>. Concatenation with <code>+</code>.</li>
+                            <li><strong>Numbers:</strong> Integers/floats: <code>42</code>, <code>3.14</code>. Support arithmetic operators.</li>
+                            <li><strong>Booleans:</strong> <code>true</code>, <code>false</code>. Used in conditionals.</li>
+                            <li><strong>Lists:</strong> Arrays: <code>[1, 2, 3]</code>. Access with <code>head</code>, <code>tail</code>, <code>length</code>.</li>
+                            <li><strong>Records:</strong> Objects: <code>{ name: "Alice"; age: 30 }</code>. Access with dot notation or destructuring.</li>
+                            <li><strong>Null:</strong> <code>null</code> for absence of value.</li>
+                        </ul>
+
+                        <h3>Operators</h3>
+                        <ul>
+                            <li>Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+                            <li>Comparison: <code>==</code>, <code>!=</code>, <code><</code>, <code>></code>, <code><=</code>, <code>>=</code></li>
+                            <li>Logical: <code>&&</code>, <code>||</code>, <code>!</code></li>
+                            <li>List: <code>++</code> for concatenation</li>
+                        </ul>
+
+                        <h3>Comments</h3>
+                        <p>Single-line comments start with <code>#</code>:</p>
+                        <pre><span class="comment"># This is a comment</span>
+<span class="keyword">let</span> x = <span class="number">10</span>; <span class="keyword">in</span> x</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Functions and Expressions</div>
+                    </div>
+                    <div class="code-content">
+                        <p>Functions are first-class citizens, supporting currying, lambdas, and higher-order patterns.</p>
+
+                        <h3>Function Definitions</h3>
+                        <p>Curried functions:</p>
+                        <pre><span class="keyword">let</span>
+  add = x: y: x <span class="operator">+</span> y;
+  increment = add <span class="number">1</span>;  <span class="comment"># Partially applied</span>
+<span class="keyword">in</span>
+  increment <span class="number">5</span>  <span class="comment"># Returns 6</span></pre>
+
+                        <h3>Lambda Expressions</h3>
+                        <p>Anonymous functions:</p>
+                        <pre><span class="keyword">let</span>
+  square = x: x <span class="operator">*</span> x;
+  numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+  squares = <span class="function">map</span> square numbers;
+<span class="keyword">in</span>
+  squares  <span class="comment"># [1, 4, 9]</span></pre>
+
+                        <h3>Higher-Order Functions</h3>
+                        <p>Functions taking/returning functions:</p>
+                        <pre><span class="keyword">let</span>
+  applyTwice = f: x: f (f x);
+  double = x: x <span class="operator">*</span> <span class="number">2</span>;
+<span class="keyword">in</span>
+  applyTwice double <span class="number">3</span>  <span class="comment"># Returns 12</span></pre>
+
+                        <h3>Pattern Matching and Records</h3>
+                        <p>Destructure records in parameters:</p>
+                        <pre><span class="keyword">let</span>
+  greet = { name, age }: <span class="string">"Hello "</span> <span class="operator">+</span> name <span class="operator">+</span> <span class="string">", age "</span> <span class="operator">+</span> <span class="function">toString</span>(age);
+<span class="keyword">in</span>
+  greet { <span class="property">name</span>: <span class="string">"Alice"</span>; <span class="property">age</span>: <span class="number">25</span> }</pre>
+
+                        <h3>Recursion</h3>
+                        <p>For loops and iteration:</p>
+                        <pre><span class="keyword">let</span>
+  factorial = n: <span class="keyword">if</span> n <span class="operator"><=</span> <span class="number">1</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> n <span class="operator">*</span> factorial (n <span class="operator">-</span> <span class="number">1</span>);
+<span class="keyword">in</span>
+  factorial <span class="number">5</span>  <span class="comment"># Returns 120</span></pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Built-in Functions</div>
+                    </div>
+                    <div class="code-content">
+                        <p>Nixi provides built-in functions for system operations, data manipulation, and utilities.</p>
+
+                        <h3>System Operations</h3>
+                        <ul>
+                            <li><code>ls(path)</code>: List directory contents.</li>
+                            <li><code>cd(path)</code>: Change directory.</li>
+                            <li><code>pwd()</code>: Get current directory.</li>
+                            <li><code>echo(str)</code>: Print to console.</li>
+                            <li><code>readFile(path)</code>: Read file contents.</li>
+                            <li><code>writeFile(path, content)</code>: Write to file.</li>
+                            <li><code>fileExists(path)</code>: Check if file exists.</li>
+                        </ul>
+
+                        <h3>String Operations</h3>
+                        <ul>
+                            <li><code>toUpperCase(str)</code>: Convert to uppercase.</li>
+                            <li><code>toLowerCase(str)</code>: Convert to lowercase.</li>
+                            <li><code>length(str)</code>: String length.</li>
+                            <li><code>substring(str, start, end)</code>: Extract substring.</li>
+                            <li><code>indexOf(str, substr)</code>: Find substring position.</li>
+                        </ul>
+
+                        <h3>Mathematical Operations</h3>
+                        <ul>
+                            <li><code>add(a, b)</code>, <code>subtract(a, b)</code>, <code>multiply(a, b)</code>, <code>divide(a, b)</code></li>
+                            <li><code>sqrt(n)</code>: Square root.</li>
+                            <li><code>pow(base, exp)</code>: Power.</li>
+                            <li><code>abs(n)</code>: Absolute value.</li>
+                        </ul>
+
+                        <h3>List Operations</h3>
+                        <ul>
+                            <li><code>head(list)</code>: First element.</li>
+                            <li><code>tail(list)</code>: All but first.</li>
+                            <li><code>length(list)</code>: List length.</li>
+                            <li><code>map(f, list)</code>: Apply function to each element.</li>
+                            <li><code>filter(pred, list)</code>: Filter elements.</li>
+                            <li><code>fold(f, init, list)</code>: Reduce list.</li>
+                        </ul>
+
+                        <h3>Conversion and Utilities</h3>
+                        <ul>
+                            <li><code>toString(val)</code>: Convert to string.</li>
+                            <li><code>toNumber(str)</code>: Convert to number.</li>
+                            <li><code>typeOf(val)</code>: Get type as string.</li>
+                        </ul>
+
+                        <p>Example usage:</p>
+                        <pre><span class="keyword">let</span>
+  files = <span class="function">ls</span>(<span class="string">"."</span>);
+  upperFiles = <span class="function">map</span> <span class="function">toUpperCase</span> files;
+<span class="keyword">in</span>
+  <span class="function">echo</span> (<span class="string">"Files: "</span> <span class="operator">+</span> <span class="function">toString</span>(upperFiles))</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">GUI and Styling</div>
+                    </div>
+                    <div class="code-content">
+                        <p>Nixi supports declarative GUI components with integrated CSS styling.</p>
+
+                        <h3>Component Declaration</h3>
+                        <p>Components are HTML-like elements:</p>
+                        <pre><span class="keyword">let</span>
+  Button = <span class="component">button</span> {
+    <span class="property">text</span>: <span class="string">"Click Me"</span>;
+    <span class="property">class</span>: <span class="string">"btn"</span>;
+    <span class="property">onClick</span>: <span class="function">echo</span> <span class="string">"Clicked!"</span>
+  };
+<span class="keyword">in</span>
+  Button</pre>
+
+                        <h3>Props and Children</h3>
+                        <p>Components accept properties and nested children:</p>
+                        <pre><span class="keyword">let</span>
+  Card = { title, content }: <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"card"</span>;
+    <span class="property">children</span>: [
+      <span class="component">h2</span> { <span class="property">text</span>: title };
+      <span class="component">p</span> { <span class="property">text</span>: content }
+    ]
+  };
+<span class="keyword">in</span>
+  Card { <span class="property">title</span>: <span class="string">"Hello"</span>; <span class="property">content</span>: <span class="string">"World"</span> }</pre>
+
+                        <h3>CSS Styling</h3>
+                        <p>Use the <code>style</code> keyword for CSS:</p>
+                        <pre><span class="keyword">style</span> <span class="string">"btn"</span> {
+  <span class="property">background</span>: <span class="string">"blue"</span>;
+  <span class="property">color</span>: <span class="string">"white"</span>;
+  <span class="property">padding</span>: <span class="string">"10px"</span>;
+}</pre>
+
+                        <h3>Event Handlers</h3>
+                        <p>Attach functions to events:</p>
+                        <pre><span class="component">input</span> {
+  <span class="property">onChange</span>: value: <span class="function">echo</span> (<span class="string">"Input: "</span> <span class="operator">+</span> value)
+}</pre>
+
+                        <h3>Composition Patterns</h3>
+                        <p>Build complex UIs by composing components:</p>
+                        <pre><span class="keyword">let</span>
+  App = <span class="component">div</span> {
+    <span class="property">children</span>: [
+      <span class="component">header</span> { <span class="property">text</span>: <span class="string">"App Header"</span> };
+      <span class="component">main</span> { <span class="property">children</span>: [Button; Card] }
+    ]
+  };
+<span class="keyword">in</span>
+  <span class="function">saveHTML</span>(App, <span class="string">"app.html"</span>, <span class="string">"My App"</span>)</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Control Flow and Error Handling</div>
+                    </div>
+                    <div class="code-content">
+                        <p>Nixi uses expressions for control flow and Result types for errors.</p>
+
+                        <h3>Conditionals</h3>
+                        <pre><span class="keyword">let</span>
+  sign = n: <span class="keyword">if</span> n <span class="operator">></span> <span class="number">0</span> <span class="keyword">then</span> <span class="string">"positive"</span> <span class="keyword">else if</span> n <span class="operator"><</span> <span class="number">0</span> <span class="keyword">then</span> <span class="string">"negative"</span> <span class="keyword">else</span> <span class="string">"zero"</span>;
+<span class="keyword">in</span>
+  sign <span class="operator">-</span><span class="number">5</span>  <span class="comment"># "negative"</span></pre>
+
+                        <h3>Error Handling with Results</h3>
+                        <pre><span class="keyword">let</span>
+  Result = { success, value, error };
+  safeDivide = a: b:
+    <span class="keyword">if</span> b <span class="operator">==</span> <span class="number">0</span>
+    <span class="keyword">then</span> Result { <span class="property">success</span>: <span class="keyword">false</span>; <span class="property">error</span>: <span class="string">"Division by zero"</span> }
+    <span class="keyword">else</span> Result { <span class="property">success</span>: <span class="keyword">true</span>; <span class="property">value</span>: a <span class="operator">/</span> b };
+<span class="keyword">in</span>
+  safeDivide <span class="number">10</span> <span class="number">0</span></pre>
+
+                        <h3>Debugging</h3>
+                        <p>Use <code>echo</code> for logging:</p>
+                        <pre><span class="keyword">let</span>
+  debug = msg: val: <span class="keyword">let</span> _ = <span class="function">echo</span> msg; <span class="keyword">in</span> val;
+<span class="keyword">in</span>
+  debug <span class="string">"Starting..."</span> (<span class="number">1</span> <span class="operator">+</span> <span class="number">2</span>)</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Advanced Topics</div>
+                    </div>
+                    <div class="code-content">
+                        <h3>Modules and Imports</h3>
+                        <p>Nixi supports importing other .nixi files (future feature; currently, compose in single files).</p>
+
+                        <h3>Performance Tips</h3>
+                        <ul>
+                            <li>Use tail recursion for large iterations.</li>
+                            <li>Avoid deep nesting; compose functions.</li>
+                            <li>Lazy evaluation for large data structures.</li>
+                        </ul>
+
+                        <h3>Integration with JavaScript</h3>
+                        <p>Compiled output includes JS for events; extend with custom scripts.</p>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Best Practices</div>
+                    </div>
+                    <div class="code-content">
+                        <ul>
+                            <li><strong>Immutability:</strong> Never mutate data; return new values.</li>
+                            <li><strong>Pure Functions:</strong> Functions should depend only on inputs.</li>
+                            <li><strong>Component Reusability:</strong> Parameterize components for flexibility.</li>
+                            <li><strong>Error Boundaries:</strong> Wrap risky operations in Result types.</li>
+                            <li><strong>Testing:</strong> Test functions with various inputs; use assertions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">Advanced Code Example: Todo App</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Define styles</span>
+<span class="keyword">style</span> <span class="string">"todo-app"</span> {
+  <span class="property">max-width</span>: <span class="string">"400px"</span>;
+  <span class="property">margin</span>: <span class="string">"0 auto"</span>;
+  <span class="property">font-family</span>: <span class="string">"Arial"</span>;
+}
+
+<span class="keyword">style</span> <span class="string">"todo-item"</span> {
+  <span class="property">display</span>: <span class="string">"flex"</span>;
+  <span class="property">justify-content</span>: <span class="string">"space-between"</span>;
+  <span class="property">padding</span>: <span class="string">"10px"</span>;
+  <span class="property">border</span>: <span class="string">"1px solid #ccc"</span>;
+  <span class="property">margin</span>: <span class="string">"5px 0"</span>;
+}
+
+<span class="comment"># Components</span>
+<span class="keyword">let</span>
+  TodoItem = { text, completed, onToggle }: <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"todo-item"</span>;
+    <span class="property">children</span>: [
+      <span class="component">span</span> {
+        <span class="property">text</span>: <span class="keyword">if</span> completed <span class="keyword">then</span> <span class="string">"✓ "</span> <span class="operator">+</span> text <span class="keyword">else</span> text;
+        <span class="property">onClick</span>: onToggle
+      };
+      <span class="component">button</span> { <span class="property">text</span>: <span class="string">"Delete"</span>; <span class="property">onClick</span>: <span class="function">echo</span> <span class="string">"Delete clicked"</span> }
+    ]
+  };
+
+  TodoApp = <span class="component">div</span> {
+    <span class="property">class</span>: <span class="string">"todo-app"</span>;
+    <span class="property">children</span>: [
+      <span class="component">h1</span> { <span class="property">text</span>: <span class="string">"Todo List"</span> };
+      <span class="component">input</span> { <span class="property">placeholder</span>: <span class="string">"Add todo"</span>; <span class="property">onChange</span>: val: <span class="function">echo</span> (<span class="string">"New todo: "</span> <span class="operator">+</span> val) };
+      TodoItem { <span class="property">text</span>: <span class="string">"Buy milk"</span>; <span class="property">completed</span>: <span class="keyword">false</span>; <span class="property">onToggle</span>: <span class="function">echo</span> <span class="string">"Toggled"</span> };
+      TodoItem { <span class="property">text</span>: <span class="string">"Walk dog"</span>; <span class="property">completed</span>: <span class="keyword">true</span>; <span class="property">onToggle</span>: <span class="function">echo</span> <span class="string">"Toggled"</span> }
+    ]
+  };
+<span class="keyword">in</span>
+  <span class="function">saveHTML</span>(TodoApp, <span class="string">"todo.html"</span>, <span class="string">"Todo App"</span>)</pre>
+                        <p><strong>Execution:</strong> Save as <code>todo.nixi</code> and run <code>node src/cli.js todo.nixi</code>. Open <code>todo.html</code> in a browser.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="installation" class="installation">
             <h2>🚀 Installation</h2>
             <div class="install-steps">
