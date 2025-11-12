@@ -185,95 +185,19 @@ builtins.addStyle = (selector, properties) => {
 
 
 (function() {
-  const properties = {"max-width":"1200px","margin":"0 auto","padding":"20px","font-family":"-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"};
-  getGUIRenderer().addStyle("dashboard", properties);
+  const properties = {"border":"1px solid #ccc","padding":"20px","margin":"10px","border-radius":"8px"};
+  getGUIRenderer().addStyle(".card", properties);
   return new NixiValue('null', null);
 })();
 (function() {
-  const properties = {"background":"linear-gradient(135deg, #667eea 0%, #764ba2 100%)","color":"white","padding":"30px","border-radius":"12px","margin-bottom":"30px","text-align":"center"};
-  getGUIRenderer().addStyle("dashboard-header", properties);
+  const properties = {"background":"#007bff","color":"white","padding":"10px 20px","border":"none","border-radius":"4px","cursor":"pointer"};
+  getGUIRenderer().addStyle(".btn", properties);
   return new NixiValue('null', null);
 })();
 (function() {
-  const properties = {"display":"flex","flex-wrap":"wrap","gap":"20px","margin-bottom":"30px"};
-  getGUIRenderer().addStyle("stats-grid", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"white","padding":"25px","border-radius":"12px","box-shadow":"0 4px 15px rgba(0, 0, 0, 0.1)","text-align":"center","transition":"transform 0.2s ease","flex":"1","min-width":"250px"};
-  getGUIRenderer().addStyle("stat-card", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"white","padding":"25px","border-radius":"12px","box-shadow":"0 4px 15px rgba(0, 0, 0, 0.1)","text-align":"center","transition":"transform 0.2s ease"};
-  getGUIRenderer().addStyle("stat-card", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"transform":"translateY(-5px)"};
-  getGUIRenderer().addStyle("stat-card:hover", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"font-size":"2.5em","font-weight":"bold","color":"#667eea","margin-bottom":"10px"};
-  getGUIRenderer().addStyle("stat-number", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"color":"#666","font-size":"1.1em","font-weight":"500"};
-  getGUIRenderer().addStyle("stat-label", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"white","padding":"30px","border-radius":"12px","box-shadow":"0 4px 15px rgba(0, 0, 0, 0.1)"};
-  getGUIRenderer().addStyle("actions-section", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"display":"flex","gap":"15px","justify-content":"center","flex-wrap":"wrap"};
-  getGUIRenderer().addStyle("action-buttons", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"#667eea","color":"white","border":"none","padding":"12px 24px","border-radius":"8px","font-size":"16px","font-weight":"600","cursor":"pointer","transition":"all 0.2s ease"};
-  getGUIRenderer().addStyle("btn-primary", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"#f8f9fa","color":"#333","border":"1px solid #dee2e6","padding":"12px 24px","border-radius":"8px","font-size":"16px","font-weight":"600","cursor":"pointer","transition":"all 0.2s ease"};
-  getGUIRenderer().addStyle("btn-secondary", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"#5a6fd8","transform":"translateY(-2px)"};
-  getGUIRenderer().addStyle("btn-primary:hover", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const properties = {"background":"#e9ecef","transform":"translateY(-2px)"};
-  getGUIRenderer().addStyle("btn-secondary:hover", properties);
-  return new NixiValue('null', null);
-})();
-(function() {
-  const appName = new NixiValue('string', "Nixi Dashboard");
-  const version = new NixiValue('string', "v1.0.0");
-  const usersStat = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-card"), "children": new NixiValue('array', [(builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-number"), "text": new NixiValue('string', "1,234") })), (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-label"), "text": new NixiValue('string', "Total Users") }))]) }));
-  const sessionsStat = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-card"), "children": new NixiValue('array', [(builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-number"), "text": new NixiValue('string', "456") })), (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-label"), "text": new NixiValue('string', "Active Sessions") }))]) }));
-  const signupsStat = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-card"), "children": new NixiValue('array', [(builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-number"), "text": new NixiValue('string', "89") })), (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-label"), "text": new NixiValue('string', "New Signups") }))]) }));
-  const apiStat = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-card"), "children": new NixiValue('array', [(builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-number"), "text": new NixiValue('string', "12.5K") })), (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stat-label"), "text": new NixiValue('string', "API Calls") }))]) }));
-  const Header = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "dashboard-header"), "children": new NixiValue('array', [(builtins.h1)(new NixiValue('object', { "text": appName })), (builtins.p)(new NixiValue('object', { "text": (function() { 
-          const l = new NixiValue('string', "Functional Programming Dashboard "); 
-          const r = version; 
-          if (l.type === 'number' && r.type === 'number') {
-            return new NixiValue('number', l.value + r.value);
-          }
-          if (l.type === 'string' || r.type === 'string') {
-            return new NixiValue('string', l.toNative() + r.toNative());
-          }
-          throw new Error('Invalid operands for +');
-        })() }))]) }));
-  const StatsSection = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "stats-grid"), "children": new NixiValue('array', [usersStat, sessionsStat, signupsStat, apiStat]) }));
-  const ActionsSection = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "actions-section"), "children": new NixiValue('array', [(builtins.h2)(new NixiValue('object', { "text": new NixiValue('string', "Quick Actions") })), (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "action-buttons"), "children": new NixiValue('array', [(builtins.button)(new NixiValue('object', { "class": new NixiValue('string', "btn-primary"), "text": new NixiValue('string', "Refresh Data"), "onClick": (builtins.echo)(new NixiValue('string', "Refreshing dashboard data...")) })), (builtins.button)(new NixiValue('object', { "class": new NixiValue('string', "btn-secondary"), "text": new NixiValue('string', "Export Report"), "onClick": (builtins.echo)(new NixiValue('string', "Exporting dashboard report...")) })), (builtins.button)(new NixiValue('object', { "class": new NixiValue('string', "btn-secondary"), "text": new NixiValue('string', "Settings"), "onClick": (builtins.echo)(new NixiValue('string', "Opening dashboard settings...")) }))]) }))]) }));
-  const Dashboard = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "dashboard"), "children": new NixiValue('array', [Header, StatsSection, ActionsSection]) }));
-  return (builtins.saveHTML)(Dashboard, new NixiValue('string', "dashboard.html"), new NixiValue('string', "Nixi Dashboard"));
+  const card1 = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "card"), "children": new NixiValue('array', [(builtins.h3)(new NixiValue('object', { "text": new NixiValue('string', "Feature 1") })), (builtins.p)(new NixiValue('object', { "text": new NixiValue('string', "This is the first feature card") }))]) }));
+  const card2 = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "card"), "children": new NixiValue('array', [(builtins.h3)(new NixiValue('object', { "text": new NixiValue('string', "Feature 2") })), (builtins.p)(new NixiValue('object', { "text": new NixiValue('string', "This is the second feature card") }))]) }));
+  const button1 = (builtins.button)(new NixiValue('object', { "class": new NixiValue('string', "btn"), "text": new NixiValue('string', "Click Me"), "onClick": (builtins.echo)(new NixiValue('string', "Button clicked!")) }));
+  const app = (builtins.div)(new NixiValue('object', { "class": new NixiValue('string', "app"), "children": new NixiValue('array', [(builtins.h1)(new NixiValue('object', { "text": new NixiValue('string', "Simple Component Demo") })), card1, card2, button1]) }));
+  return (builtins.saveHTML)(app, new NixiValue('string', "simple-components.html"), new NixiValue('string', "Simple Component Demo"));
 })();

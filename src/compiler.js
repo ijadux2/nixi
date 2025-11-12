@@ -697,15 +697,24 @@ function main() {
     console.log('Use --help for available options');
     process.exit(1);
   } else {
+    // Check if the argument is a valid file
+    const filename = args[0];
+    if (!fs.existsSync(filename)) {
+      console.error(`Error: File not found: ${filename}`);
+      console.log('Usage: nixi <file>');
+      console.log('   or: nixi          (for REPL mode)');
+      console.log('   or: nixi --help   (for help)');
+      process.exit(1);
+    }
+    
     try {
-      const result = compiler.compileFile(args[0]);
+      const result = compiler.compileFile(filename);
       
       // Write compiled code to file for debugging
       fs.writeFileSync('debug_output.js', result.code);
       console.log('Compiled code written to debug_output.js');
       
       // Execute the compiled code
-      const filename = args[0];
       const module = { exports: {} };
       const dirname = path.dirname(path.resolve(filename));
       
