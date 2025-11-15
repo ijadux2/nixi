@@ -1,0 +1,155 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Nixi",
+  "scopeName": "source.nixi",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#builtins"
+    },
+    {
+      "include": "#components"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#style-blocks"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.nixi",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.nixi",
+          "match": "\\b(let|in|if|then|else|component|style|true|false|null)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.nixi",
+          "match": "\\b(echo|ls|cd|pwd|add|multiply|subtract|divide|concat|toString|length|map|div|span|button|input|h1|h2|h3|p|a|renderHTML|saveHTML|addStyle)\\b"
+        }
+      ]
+    },
+    "components": {
+      "patterns": [
+        {
+          "name": "entity.name.function.component.nixi",
+          "match": "\\b(component)\\s+(\\w+)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.nixi"
+            },
+            "2": {
+              "name": "entity.name.function.nixi"
+            }
+          }
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.nixi",
+          "match": "(\\w+)\\s*=\\s*(\\w+)\\s*:"
+        },
+        {
+          "name": "entity.name.function.nixi",
+          "match": "(\\w+)\\s*=\\s*\\{[^}]*\\}"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.nixi",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.nixi",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.nixi",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.nixi",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.nixi",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.nixi",
+          "match": "(\\+|\\-|\\*|\\/|\\=|\\=\\=|\\!\\=|\\<|\\>|\\<\\=|\\>\\=|\\&\\&|\\|\\||\\!)"
+        }
+      ]
+    },
+    "style-blocks": {
+      "patterns": [
+        {
+          "name": "meta.style.nixi",
+          "begin": "(style)\\s+\"",
+          "end": "\"",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.nixi"
+            }
+          },
+          "patterns": [
+            {
+              "name": "support.type.property-name.css.nixi",
+              "match": "([a-zA-Z-]+)\\s*:",
+              "captures": {
+                "1": {
+                  "name": "support.type.property-name.css.nixi"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "nixi-language-cursor",
+  "displayName": "Nixi Language Support for Cursor",
+  "description": "Syntax highlighting and language support for Nixi programming language in Cursor editor",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "nixi",
+    "cursor",
+    "programming language",
+    "syntax highlighting",
+    "functional programming",
+    "gui",
+    "ai editor"
+  ],
+  "author": {
+    "name": "Kumar Vaibhav",
+    "email": "contact@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ijadux2/nixi.git"
+  },
+  "publisher": "nixi",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:nixi"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "nixi",
+        "aliases": [
+          "Nixi",
+          "nixi"
+        ],
+        "extensions": [
+          ".nixi"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nixi",
+        "scopeName": "source.nixi",
+        "path": "./syntaxes/nixi.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "nixi",
+        "path": "./snippets/nixi.json"
+      }
+    ],
+    "configuration": {
+      "title": "Nixi",
+      "properties": {
+        "nixi.enableSyntaxHighlighting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax highlighting for Nixi files"
+        },
+        "nixi.enableSnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable code snippets for Nixi"
+        },
+        "nixi.compilerPath": {
+          "type": "string",
+          "default": "nixi",
+          "description": "Path to the Nixi compiler executable"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.x",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {}
+}

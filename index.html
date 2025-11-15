@@ -499,6 +499,7 @@
                 <li><a href="#compiler-usage">Compiler Usage</a></li>
                 <li><a href="#testing-results">Testing Results</a></li>
                 <li><a href="#documentation">Documentation</a></li>
+                <li><a href="#editor-support">Editor Support</a></li>
                 <li><a href="#installation">Installation</a></li>
             </ul>
         </nav>
@@ -1744,6 +1745,207 @@ nixi --compile examples/simple-components.nixi</pre>
             </div>
         </section>
 
+        <section id="editor-support" class="code-section">
+            <h2>💻 Editor Support</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Neovim</h3>
+                    <p>Full syntax highlighting, smart indentation, and file detection for .nixi files. Easy installation with plugin managers.</p>
+                    <div style="margin-top: 1rem;">
+                        <div style="background: var(--code-bg); padding: 0.8rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem;">
+                            ./install-neovim.sh
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>VS Code</h3>
+                    <p>Complete language support with syntax highlighting, code snippets, integrated compilation commands, and auto-completion.</p>
+                    <div style="margin-top: 1rem;">
+                        <div style="background: var(--code-bg); padding: 0.8rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem;">
+                            Search: "Nixi Language Support"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Cursor</h3>
+                    <p>AI-powered editor support with enhanced code generation, smart error analysis, and AI-assisted refactoring capabilities.</p>
+                    <div style="margin-top: 1rem;">
+                        <div style="background: var(--code-bg); padding: 0.8rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem;">
+                            Search: "Nixi Language Support for Cursor"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Other Editors</h3>
+                    <p>TextMate grammar support for Sublime Text, Atom, and other editors. Basic syntax highlighting available.</p>
+                    <div style="margin-top: 1rem;">
+                        <div style="background: var(--code-bg); padding: 0.8rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem;">
+                            Copy syntax/nixi.tmLanguage.json
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-examples" style="margin-top: 3rem;">
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">🔧 Neovim Installation</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Quick install script</span>
+./install-neovim.sh
+
+<span class="comment"># Manual installation</span>
+mkdir -p ~/.config/nvim/{syntax,ftdetect,indent}
+cp neovim/syntax/nixi.vim ~/.config/nvim/syntax/
+cp neovim/ftdetect/nixi.vim ~/.config/nvim/ftdetect/
+cp neovim/indent/nixi.vim ~/.config/nvim/indent/
+
+<span class="comment"># Using vim-plug</span>
+Plug 'path/to/nixi', {'rtp': 'neovim'}
+
+<span class="comment"># Using lazy.nvim</span>
+{
+  'path/to/nixi',
+  rtp = 'neovim'
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">💻 VS Code Extension</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Install from marketplace</span>
+1. Open VS Code
+2. Go to Extensions (Ctrl+Shift+X)
+3. Search "Nixi Language Support"
+4. Click Install
+
+<span class="comment"># Install from source</span>
+cd vscode-extension
+npm install
+npm run compile
+vsce package
+code --install-extension nixi-language-1.0.0.vsix
+
+<span class="comment"># Available commands</span>
+- Nixi: Compile File
+- Nixi: Run File  
+- Nixi: Compile to JavaScript
+
+<span class="comment"># Keyboard shortcuts</span>
+{
+  "key": "ctrl+shift+b",
+  "command": "nixi.compile",
+  "when": "editorLangId == nixi"
+},
+{
+  "key": "f5", 
+  "command": "nixi.run",
+  "when": "editorLangId == nixi"
+}</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">🤖 Cursor AI Integration</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># AI-powered features in Cursor</span>
+
+<span class="comment"># Code generation examples</span>
+"Create a Nixi component for a user profile card"
+"Generate a let block with mathematical functions"
+"Build a todo app with styling"
+
+<span class="comment"># Code explanation</span>
+"Explain how this component works"
+"What does this let-in binding do?"
+"Describe the styling approach here"
+
+<span class="comment"># Refactoring assistance</span>
+"Refactor this component to use props"
+"Convert this to a more functional style"
+"Add error handling to this function"
+"Optimize this Nixi code for performance"
+
+<span class="comment"># Debugging help</span>
+"Help me debug this Nixi component"
+"Why is this style not applying?"
+"Fix the syntax error in this let block"</pre>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <div class="code-title">📝 Other Editors Setup</div>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <div class="code-content">
+                        <pre><span class="comment"># Sublime Text</span>
+1. Open Packages folder: Preferences > Browse Packages
+2. Create folder: Nixi
+3. Copy syntax file: vscode-extension/syntaxes/nixi.tmLanguage.json
+4. Restart Sublime Text
+
+<span class="comment"># Atom</span>
+1. Install language-nixi package from settings
+2. Or manually copy syntax file to ~/.atom/packages
+3. Restart Atom
+
+<span class="comment"># Generic TextMate setup</span>
+1. Copy nixi.tmLanguage.json to editor's syntax directory
+2. Associate .nixi files with the grammar
+3. Restart editor
+
+<span class="comment"># Basic syntax highlighting keywords</span>
+Keywords: let, in, if, then, else, component, style, true, false, null
+Built-ins: echo, ls, cd, pwd, add, multiply, subtract, divide, concat
+Components: div, span, button, input, h1, h2, h3, p, a
+Operators: +, -, *, /, =, ==, !=, <, >, <=, >=, &&, ||, !</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--surface1); border-radius: 15px;">
+                <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">🚀 Quick Setup Commands</h3>
+                <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div style="background: var(--code-bg); padding: 1rem; border-radius: 8px;">
+                        <strong style="color: var(--mauve);">Neovim:</strong>
+                        <code style="color: var(--code-text); display: block; margin-top: 0.5rem;">./install-neovim.sh</code>
+                    </div>
+                    <div style="background: var(--code-bg); padding: 1rem; border-radius: 8px;">
+                        <strong style="color: var(--mauve);">VS Code:</strong>
+                        <code style="color: var(--code-text); display: block; margin-top: 0.5rem;">cd vscode-extension && npm install && npm run compile</code>
+                    </div>
+                    <div style="background: var(--code-bg); padding: 1rem; border-radius: 8px;">
+                        <strong style="color: var(--mauve);">Cursor:</strong>
+                        <code style="color: var(--code-text); display: block; margin-top: 0.5rem;">cd cursor-extension && npm install && npm run compile</code>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--success-color); background-opacity: 0.1; border-radius: 8px; border-left: 4px solid var(--success-color);">
+                    <p style="color: var(--text-dark); margin: 0;">
+                        <strong>💡 Pro Tip:</strong> After installing editor support, create a new .nixi file and you should see syntax highlighting, auto-completion, and other language features automatically!
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="installation" class="installation">
             <h2>🚀 Installation</h2>
             
@@ -1831,6 +2033,7 @@ chmod +x install-linux.sh
                     <li><a href="#examples">Examples</a></li>
                     <li><a href="#compiler-usage">Compiler Usage</a></li>
                     <li><a href="#testing-results">Testing Results</a></li>
+                    <li><a href="#editor-support">Editor Support</a></li>
                     <li><a href="#installation">Installation</a></li>
                     <li><a href="https://github.com/ijadux2/nixi">GitHub</a></li>
                 </ul>

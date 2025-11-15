@@ -193,16 +193,34 @@ nixi/
 │   ├── ultra-simple.nixi
 │   └── working.nixi
 ├── examples/              # Working GUI examples
-│   └── simple-gui.nixi
+│   ├── simple-gui.nixi
+│   ├── simple-components.nixi
+│   ├── styling-demo.nixi
+│   ├── system-ops.nixi
+│   ├── component-demo.nixi
+│   └── advanced-demo.nixi
 ├── neovim/               # Neovim syntax highlighting
 │   ├── ftdetect/nixi.vim
 │   ├── indent/nixi.vim
 │   ├── syntax/nixi.vim
 │   └── README.md
+├── vscode-extension/      # VS Code extension
+│   ├── package.json
+│   ├── syntaxes/nixi.tmLanguage.json
+│   ├── snippets/nixi.json
+│   ├── src/extension.ts
+│   └── README.md
+├── cursor-extension/      # Cursor AI editor extension
+│   ├── package.json
+│   ├── syntaxes/nixi.tmLanguage.json
+│   ├── snippets/nixi.json
+│   ├── src/extension.ts
+│   └── README.md
 ├── tests/               # Test suite
 │   └── test.js
 ├── index.html           # Main documentation website
 ├── README.md           # This file
+├── EDITOR_INSTALLATION.md # Comprehensive editor setup guide
 ├── COMPILER_USAGE.md   # Compiler usage guide
 ├── package.json        # Node.js dependencies
 └── install-neovim.sh   # Neovim setup script
@@ -271,8 +289,86 @@ nixi --version        # Show version
 nixi --compile file   # Compile to JavaScript
 ```
 
-### Neovim Support
-Install syntax highlighting:
+### Editor Support
+
+Nixi provides comprehensive editor support for multiple development environments:
+
+#### 🔧 Neovim
+Full syntax highlighting, smart indentation, and file detection:
+```bash
+./install-neovim.sh
+```
+
+**Features:**
+- Syntax highlighting for keywords, built-ins, components
+- Smart indentation for let blocks, components, styles  
+- File type detection for `.nixi` files
+- Customizable colors and highlighting
+
+**Manual Installation:**
+```bash
+mkdir -p ~/.config/nvim/{syntax,ftdetect,indent}
+cp neovim/syntax/nixi.vim ~/.config/nvim/syntax/
+cp neovim/ftdetect/nixi.vim ~/.config/nvim/ftdetect/
+cp neovim/indent/nixi.vim ~/.config/nvim/indent/
+```
+
+#### 💻 VS Code
+Complete language support with integrated compilation:
+1. Open VS Code
+2. Go to Extensions (Ctrl+Shift+X)
+3. Search "Nixi Language Support"
+4. Click Install
+
+**Features:**
+- Full syntax highlighting and code snippets
+- Integrated compilation commands (Compile, Run, Compile to JS)
+- Auto-completion and bracket matching
+- Status bar integration
+- Configurable compiler path
+
+**Available Commands:**
+- `Nixi: Compile File` - Compile current .nixi file
+- `Nixi: Run File` - Run current .nixi file  
+- `Nixi: Compile to JavaScript` - Convert to JS
+
+#### 🤖 Cursor
+AI-powered editor with enhanced features:
+1. Open Cursor
+2. Go to Extensions (Ctrl+Shift+X)
+3. Search "Nixi Language Support for Cursor"
+4. Click Install
+
+**Features:**
+- All VS Code features plus AI integration
+- AI-powered code generation and explanation
+- Smart error analysis and suggestions
+- AI-assisted refactoring
+- Context-aware completions
+
+**AI Integration Examples:**
+```
+"Create a Nixi component for a user profile card"
+"Explain how this let-in binding works"
+"Refactor this component to use props"
+"Help me debug this Nixi code"
+```
+
+#### 📝 Other Editors
+Basic TextMate grammar support for Sublime Text, Atom, and other editors:
+- Copy `vscode-extension/syntaxes/nixi.tmLanguage.json`
+- Install as TextMate grammar
+- Associate `.nixi` files with the grammar
+
+**Quick Setup:**
+```bash
+# For detailed installation guides, see:
+cat EDITOR_INSTALLATION.md
+```
+
+---
+
+### Neovim Support (Quick Install)
 ```bash
 ./install-neovim.sh
 ```
@@ -287,6 +383,8 @@ Install syntax highlighting:
 **Compiler**: ✅ Production Ready  
 **REPL**: ✅ Interactive  
 **Component Definitions**: ✅ Working  
+**Editor Support**: ✅ Neovim, VS Code, Cursor  
+**Extensions**: ✅ Full language extensions available  
 **Lambda Functions**: ⚠️ Limited support  
 **Parameter Destructuring**: ⚠️ Limited support  
 
@@ -295,7 +393,9 @@ Install syntax highlighting:
 - 🔧 **Enhanced Error Messages** - Better debugging
 - 📦 **Component System** - Reusable GUI components  
 - 🎨 **Improved Styling** - CSS-like styling support
-- 🔍 **Debug Output** - Automatic JavaScript generation  
+- 🔍 **Debug Output** - Automatic JavaScript generation
+- 💻 **Editor Extensions** - Full VS Code and Cursor support
+- 🔧 **Neovim Plugin** - Enhanced syntax highlighting and indentation  
 
 ## 🤝 Contributing
 
@@ -312,6 +412,11 @@ MIT License - see LICENSE file for details
 
 - **GitHub Repository**: https://github.com/ijadux2/nixi
 - **Documentation**: [nixi](https://nixi-phi.vercel.app/)
+- **Editor Installation Guide**: [EDITOR_INSTALLATION.md](EDITOR_INSTALLATION.md)
+- **Compiler Usage**: [COMPILER_USAGE.md](COMPILER_USAGE.md)
+- **VS Code Extension**: [vscode-extension/README.md](vscode-extension/README.md)
+- **Cursor Extension**: [cursor-extension/README.md](cursor-extension/README.md)
+- **Neovim Plugin**: [neovim/README.md](neovim/README.md)
 - **Issues**: Report bugs and feature requests on GitHub
 
 ---

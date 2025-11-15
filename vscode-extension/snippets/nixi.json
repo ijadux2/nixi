@@ -1,0 +1,95 @@
+{
+  "Component definition": {
+    "prefix": "component",
+    "body": [
+      "component ${1:ComponentName} = { ${2:param1}, ${3:param2} }:",
+      "  ${4:div} {",
+      "    ${5}: ${6};",
+      "    ${7}: ${8}",
+      "  };"
+    ],
+    "description": "Create a Nixi component"
+  },
+  "Let block": {
+    "prefix": "let",
+    "body": [
+      "let",
+      "  ${1:name} = ${2:value};",
+      "in",
+      "  ${3:expression}"
+    ],
+    "description": "Create a let block"
+  },
+  "If expression": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} then",
+      "  ${2:trueExpression}",
+      "else",
+      "  ${3:falseExpression}"
+    ],
+    "description": "Create an if-then-else expression"
+  },
+  "Style definition": {
+    "prefix": "style",
+    "body": [
+      "style \"${1:selector}\" {",
+      "  ${2:property}: \"${3:value}\";",
+      "  ${4:property}: \"${5:value}\"",
+      "}"
+    ],
+    "description": "Create a style definition"
+  },
+  "Button component": {
+    "prefix": "button",
+    "body": [
+      "button {",
+      "  text: \"${1:Button Text}\";",
+      "  onClick: ${2:handler}",
+      "}"
+    ],
+    "description": "Create a button component"
+  },
+  "Div container": {
+    "prefix": "div",
+    "body": [
+      "div {",
+      "  class: \"${1:className}\";",
+      "  ${2:content}",
+      "}"
+    ],
+    "description": "Create a div container"
+  },
+  "Input field": {
+    "prefix": "input",
+    "body": [
+      "input {",
+      "  type: \"${1:text}\";",
+      "  value: \"${2:value}\";",
+      "  onChange: ${3:handler}",
+      "}"
+    ],
+    "description": "Create an input field"
+  },
+  "Function definition": {
+    "prefix": "fun",
+    "body": [
+      "${1:functionName} = ${2:param}: ${3:expression}"
+    ],
+    "description": "Create a function definition"
+  },
+  "Lambda function": {
+    "prefix": "lambda",
+    "body": [
+      "\\${1:param}: ${2:expression}"
+    ],
+    "description": "Create a lambda function"
+  },
+  "Echo statement": {
+    "prefix": "echo",
+    "body": [
+      "echo \"${1:message}\""
+    ],
+    "description": "Create an echo statement"
+  }
+}

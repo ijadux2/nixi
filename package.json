@@ -19,7 +19,13 @@
     "example:dashboard": "node src/compiler.js config/dashboard.nixi",
     "setup:editor": "./install-neovim.sh"
   },
-  "keywords": ["programming-language", "nix", "bash", "gui", "react"],
+  "keywords": [
+    "programming-language",
+    "nix",
+    "bash",
+    "gui",
+    "react"
+  ],
   "author": "Kumar Vaibhav",
   "license": "MIT",
   "repository": {
